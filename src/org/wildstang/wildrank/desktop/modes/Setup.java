@@ -77,14 +77,14 @@ public class Setup extends Mode implements ActionListener {
 	}
 
 	private void setupGame() {
-		File configFile = new File(appData.getLocalLocation() + File.separator + "config.wild");
+		File gameFile = new File(appData.getLocalLocation() + File.separator + "game.wild");
 		try {
-			appData.setGame(GameReader.readFile(configFile));
+			appData.setGame(GameReader.readFile(gameFile));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (GameReaderException e) {
 			e.printStackTrace();
-			JOptionPane.showOptionDialog(new JFrame(), "Error in config file!", "Error", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
+			JOptionPane.showOptionDialog(new JFrame(), "Error in game file!", "Error", JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null, null, null);
 		}
 	}
 

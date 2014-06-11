@@ -63,7 +63,6 @@ public class PitAssigner extends Mode implements ActionListener, Runnable {
 		try {
 			numTablets = Integer.parseInt(numberOfTablets.getText().toString());
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
 			numTablets = 3;
 		}
 		for (int i = 0; i < eventTeamsListObject.length(); i++) {

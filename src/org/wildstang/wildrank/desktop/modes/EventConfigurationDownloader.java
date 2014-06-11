@@ -68,6 +68,7 @@ public class EventConfigurationDownloader extends Mode implements ActionListener
 
 		File localFile = new File(FileUtilities.getSyncedDirectory() + File.separator + "event" + File.separator + "event.json");
 		try {
+			localFile.createNewFile();
 			BufferedWriter bw = new BufferedWriter(new FileWriter(localFile));
 			bw.write(jsonEvent.toString());
 			bw.flush();

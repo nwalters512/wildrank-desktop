@@ -57,7 +57,7 @@ public class ClearDirectories extends Mode implements ActionListener {
 		File[] files = directory.listFiles();
 		if (files != null) {
 			for (File file : files) {
-				if (file.isFile() && !file.getName().equals("config.wild") && !file.getName().equals("unknown.png")) {
+				if (file.isFile() && !file.getName().equals("game.wild") && !file.getName().equals("unknown.png")) {
 					file.delete();
 				} else {
 					deleteFilesInDirectory(file);

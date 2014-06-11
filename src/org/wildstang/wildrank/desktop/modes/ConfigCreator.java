@@ -107,7 +107,7 @@ public class ConfigCreator extends Mode implements ActionListener {
 		else if (event.getSource() == write) {
 			GlobalAppHandler.getInstance().disableBackButton();
 			try {
-				BufferedWriter bw = new BufferedWriter(new FileWriter(new File(appData.getLocalLocation() + File.separator + "config.wild")));
+				BufferedWriter bw = new BufferedWriter(new FileWriter(new File(appData.getLocalLocation() + File.separator + "game.wild")));
 				bw.write("game-name: " + gameName.getText() + "\n");
 				bw.write("main-key: " + mainKey.getText() + "\n");
 				for (Section section : sections) {
