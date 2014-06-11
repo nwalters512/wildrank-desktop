@@ -1,0 +1,38 @@
+game-name: Aerial Assist
+main-key: scoring
+section-key: autonomous
+item: Auto High Goals, scored_high; num
+item: Auto Low Goals, scored_low; num
+item: Auto High Hot Goals, scored_hot_high; num
+item: Auto Low Hot Goals, scored_hot_low; num
+item: Auto Missed Goals, missed; num
+item: Moved, move; bool
+item: Goalie Zone, goalie_zone; bool
+item: Starts with Ball, ball; bool
+section-key: teleop
+item: High Goals, scored_high; num
+item: Low Goals, scored_low; num
+item: Missed Goals, missed; num
+item: Truss Goals, truss; num
+item: Truss Misses, truss_missed; num
+item: Truss Catches, truss_catch_count; num
+item: Catches from HP, hp_catch_count; num
+item: Floor Pickup, floor_pickup_count; num
+item: To Robot Passes, pass_to_robot_count; num
+item: To HP Passes, pass_to_hp_count; num
+item: Assists, assist_count; num
+item: Fumbles, fumbled; num
+section-key: post_match
+item: Defense, defense; bool
+item: Defense Rating, defense_rating; num
+item: Driver Skill Rating, driver_skill; num
+item: Driver Speed Rating, driver_speed; num
+item: Floor Pickup Rating, floor_pickup_rating; num
+item: General Fouls, foul_general; num
+item: Technicals, foul_technical; num
+item: DQed, dq; bool
+item: No Show, no_show; bool
+item: Broke Down, broke_down; bool
+item: Damaged, damaged; bool
+item: Tipped, tipped; bool
+item: Lost Comm, lost_comm; bool
