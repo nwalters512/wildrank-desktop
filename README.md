@@ -99,3 +99,5 @@ Want to add features, fix bugs, or just poke around the code? No problem!
 4. Submit a pull request here and we'll review it and get it added in!
 
 For more detailed instructions, checkout [GitHub's Guide to Contributing](https://guides.github.com/activities/contributing-to-open-source/)
+
+We ask that all contributions be team/game agnostic; they should support the framework in general and not be designed for any one game or team. If you don't know if that describes the feature you want to submit, or if you can make the case that your specific feature would be valuable, open an issue and we'll get back to you!
