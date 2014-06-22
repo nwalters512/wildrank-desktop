@@ -1,14 +1,20 @@
 package org.wildstang.wildrank.desktop;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -22,9 +28,13 @@ public class GlobalAppHandler implements ActionListener {
 	private static GlobalAppHandler instance;
 	private static JFrame window;
 	private static JPanel content;
+	private static JPanel sidebar;
 	private static AppData appData;
 	private static JPanel backBar;
 	private static JButton back;
+	private static JButton setLocal;
+	private static JButton setFlashDrive;
+	private static JButton save;
 
 	private static Mode mode;
 
@@ -55,7 +65,44 @@ public class GlobalAppHandler implements ActionListener {
 				content = new JPanel();
 				content.setLayout(new GridBagLayout());
 				content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-				window.setMinimumSize(new Dimension(500, 300));
+				
+				sidebar = new JPanel();
+				sidebar.setLayout(new GridBagLayout());
+				sidebar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
+				GridBagConstraints c = new GridBagConstraints();
+				c.gridx = 0;
+				c.gridy = 0;
+				c.gridwidth = 1;
+				c.anchor = GridBagConstraints.NORTH;
+				JLabel wr = new JLabel("<html><b>WildRank</b></html>");
+				wr.setFont(new Font(wr.getFont().getName(), Font.PLAIN, 25));
+				JLabel desktop = new JLabel("<html><b>Desktop</b></html>");
+				desktop.setFont(new Font(desktop.getFont().getName(), Font.PLAIN, 25));
+				sidebar.add(wr, c);
+				c.gridy = 1;
+				sidebar.add(desktop, c);
+				c.gridy = 2;
+				c.anchor = GridBagConstraints.NORTHWEST;
+				sidebar.add(new JLabel("<HTML><U>Directories</U><HTML>"), c);
+				c.gridy = 3;
+				sidebar.add(new JLabel("Local:"), c);
+				c.gridy = 4;
+				setLocal = new JButton("Set Local Dir");
+				setLocal.addActionListener(GlobalAppHandler.this);
+				c.fill = GridBagConstraints.BOTH;
+				sidebar.add(setLocal, c);
+				c.gridy = 5;
+				sidebar.add(new JLabel("Flash Drive:"), c);
+				c.gridy = 6;
+				setFlashDrive = new JButton("Set Flash Dir");
+				setFlashDrive.addActionListener(GlobalAppHandler.this);
+				sidebar.add(setFlashDrive, c);
+				c.gridy = 7;
+				save = new JButton("Save Config");
+				save.addActionListener(GlobalAppHandler.this);
+				sidebar.add(save, c);
+				
+				window.setMinimumSize(new Dimension(600, 300));
 				window.setLocationRelativeTo(null);
 				window.setResizable(true);
 				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,8 +113,9 @@ public class GlobalAppHandler implements ActionListener {
 				back.addActionListener(GlobalAppHandler.this);
 				backBar.add(back, BorderLayout.WEST);
 				window.getContentPane().setLayout(new BorderLayout());
+				window.getContentPane().add(sidebar, BorderLayout.WEST);
 				window.getContentPane().add(backBar, BorderLayout.NORTH);
-				window.getContentPane().add(content, BorderLayout.CENTER);
+				window.getContentPane().add(content, BorderLayout.EAST);
 				window.setVisible(true);
 			}
 		});
@@ -94,6 +142,12 @@ public class GlobalAppHandler implements ActionListener {
 		initializeNewMode();
 	}
 
+	public static void updateDirs(File localF, File fdF)
+	{
+		setLocal.setText(localF.toString());
+		setFlashDrive.setText(fdF.toString());
+	}
+	
 	public AppData getAppData() {
 		return appData;
 	}
@@ -124,6 +178,17 @@ public class GlobalAppHandler implements ActionListener {
 		if (event.getSource() == back) {
 			setMode(new MainMenu());
 		}
+		else if (event.getSource() == setLocal) {
+			appData.setFlashDriveLocation(MainMenu.getLocalLocation());
+			GlobalAppHandler.updateDirs(appData.getLocalLocation(), appData.getFlashDriveLocation());
+		}
+		else if (event.getSource() == setFlashDrive) {
+			appData.setFlashDriveLocation(MainMenu.getFlashDriveLocation());
+			GlobalAppHandler.updateDirs(appData.getLocalLocation(), appData.getFlashDriveLocation());
+		}
+		else if (event.getSource() == save) {
+			appData.save();
+		} 
 	}
 
 	public void disableBackButton() {

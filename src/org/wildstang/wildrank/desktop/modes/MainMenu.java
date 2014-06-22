@@ -10,26 +10,24 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 
+import org.wildstang.wildrank.desktop.GlobalAppHandler;
+
 public class MainMenu extends Mode implements ActionListener {
 	JButton getEventData;
 	JButton generateMatchCSV;
 	JButton generatePitCSV;
 	JButton generatePDF;
-	JButton setFlashLocation;
-	JButton setLocalLocation;
 	JButton compileNotes;
-	JButton saveConfiguration;
 	JButton addTeamsManually;
 	JButton addMatchManually;
 	JButton clearDirectories;
 	JButton noteAdder;
 	JButton sync;
 	JButton newConfig;
-	JLabel about;
-	JLabel aboutb;
 
 	@Override
 	protected void initializePanel() {
+		GlobalAppHandler.updateDirs(appData.getLocalLocation(), appData.getFlashDriveLocation());
 		getEventData = new JButton("Get Event Data");
 		getEventData.addActionListener(MainMenu.this);
 		generateMatchCSV = new JButton("Generate CSV");
@@ -38,12 +36,6 @@ public class MainMenu extends Mode implements ActionListener {
 		generatePitCSV.addActionListener(MainMenu.this);
 		generatePDF = new JButton("Generate PDFs");
 		generatePDF.addActionListener(MainMenu.this);
-		setFlashLocation = new JButton("Set Flash Location");
-		setFlashLocation.addActionListener(MainMenu.this);
-		setLocalLocation = new JButton("Set Local Location");
-		setLocalLocation.addActionListener(MainMenu.this);
-		saveConfiguration = new JButton("Save Configuration");
-		saveConfiguration.addActionListener(MainMenu.this);
 		compileNotes = new JButton("Prepare Notes");
 		compileNotes.addActionListener(MainMenu.this);
 		newConfig = new JButton("New Config File");
@@ -58,10 +50,6 @@ public class MainMenu extends Mode implements ActionListener {
 		addTeamsManually.addActionListener(this);
 		addMatchManually = new JButton("Add Matches Manually");
 		addMatchManually.addActionListener(this);
-		about = new JLabel(appData.getFlashDriveLocation().toString());
-		about.setHorizontalAlignment(SwingConstants.CENTER);
-		aboutb = new JLabel(" " + appData.getLocalLocation().toString());
-		aboutb.setHorizontalAlignment(SwingConstants.CENTER);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 2;
@@ -88,21 +76,9 @@ public class MainMenu extends Mode implements ActionListener {
 		panel.add(noteAdder, c);
 		c.gridx = 0;
 		c.gridy = 5;
-		panel.add(setFlashLocation, c);
-		c.gridx = 1;
-		panel.add(setLocalLocation, c);
-		c.gridx = 0;
-		c.gridy = 6;
-		panel.add(about, c);
-		c.gridx = 1;
-		panel.add(aboutb, c);
-		c.gridx = 0;
-		c.gridy = 7;
 		c.gridwidth = 2;
-		panel.add(saveConfiguration, c);
-		c.gridy = 8;
 		panel.add(clearDirectories, c);
-		c.gridy = 9;
+		c.gridy = 6;
 		panel.add(newConfig, c);
 		update.setMode("Main Menu");
 	}
@@ -115,16 +91,8 @@ public class MainMenu extends Mode implements ActionListener {
 			setMode(new PitCSVGenerator());
 		} else if (event.getSource() == compileNotes) {
 			setMode(new NoteCompiler());
-		} else if (event.getSource() == setFlashLocation) {
-			appData.setFlashDriveLocation(getFlashDriveLocation());
-			about.setText(appData.getFlashDriveLocation().toString());
-		} else if (event.getSource() == setLocalLocation) {
-			appData.setLocalLocation(getLocalLocation());
-			aboutb.setText(appData.getLocalLocation().toString());
 		} else if (event.getSource() == getEventData) {
 			setMode(new EventSelector());
-		} else if (event.getSource() == saveConfiguration) {
-			appData.save();
 		} else if (event.getSource() == sync) {
 			setMode(new SyncWithFlashDrive());
 		} else if (event.getSource() == noteAdder) {
