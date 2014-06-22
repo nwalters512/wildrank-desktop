@@ -9,6 +9,10 @@ public class GameReader {
 
 	public static Game readFile(File file) throws IOException, GameReaderException {
 		Game game = new Game();
+		if(!file.exists())
+		{
+			System.out.println("NO GAME FILE!!!!!!111one");
+		}
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = null;
 		String currentSection = null;
