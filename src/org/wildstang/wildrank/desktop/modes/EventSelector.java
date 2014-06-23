@@ -57,7 +57,7 @@ public class EventSelector extends Mode implements ActionListener {
 		// Retrieve team data from TBA
 		// This API subject to change
 		// As of 1/2/2014, API v2 was still in beta
-		String url = "http://www.thebluealliance.com/api/v2/team/frc" + team.getText() + "/" + year.getText();
+		String url = "http://www.thebluealliance.com/api/v2/team/frc" + team.getText() + "/" + year.getText() + "/events";
 		final String teamInfoString = JSONTools.getJsonFromUrl(url);
 		Logger.getInstance().log("TeamInfo: " + teamInfoString);
 		// Extract event list from that data
@@ -68,8 +68,7 @@ public class EventSelector extends Mode implements ActionListener {
 
 				@Override
 				public void run() {
-					JSONObject teamInfo = new JSONObject(teamInfoString);
-					JSONArray teamEvents = teamInfo.getJSONArray("events");
+					JSONArray teamEvents = new JSONArray(teamInfoString);
 					int x = 0;
 					int y = 0;
 					panel.removeAll();
