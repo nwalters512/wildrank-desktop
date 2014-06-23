@@ -76,6 +76,7 @@ public class GlobalAppHandler implements ActionListener {
 				c.gridy = 0;
 				c.gridwidth = 1;
 				c.anchor = GridBagConstraints.NORTH;
+				c.fill = GridBagConstraints.VERTICAL;
 				JLabel wr = new JLabel("<html><b>WildRank</b></html>");
 				wr.setFont(new Font(wr.getFont().getName(), Font.PLAIN, 25));
 				JLabel desktop = new JLabel("<html><b>Desktop</b></html>");
@@ -109,7 +110,7 @@ public class GlobalAppHandler implements ActionListener {
 				save.addActionListener(GlobalAppHandler.this);
 				sidebar.add(save, c);
 				
-				window.setMinimumSize(new Dimension(600, 350));
+				window.setMinimumSize(new Dimension(575, 350));
 				window.setLocationRelativeTo(null);
 				window.setResizable(true);
 				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
