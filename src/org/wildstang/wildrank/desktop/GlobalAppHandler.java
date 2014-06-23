@@ -78,40 +78,36 @@ public class GlobalAppHandler implements ActionListener {
 				c.gridwidth = 1;
 				c.anchor = GridBagConstraints.NORTH;
 				c.fill = GridBagConstraints.VERTICAL;
-				JLabel wr = new JLabel("<html><b>WildRank");
+				JLabel wr = new JLabel("<html><b>WildRank<br>Desktop");
 				wr.setFont(new Font(wr.getFont().getName(), Font.PLAIN, 25));
-				JLabel desktop = new JLabel("<html><b>Desktop");
-				desktop.setFont(new Font(desktop.getFont().getName(), Font.PLAIN, 25));
 				sidebar.add(wr, c);
 				c.gridy = 1;
-				sidebar.add(desktop, c);
-				c.gridy = 2;
 				c.anchor = GridBagConstraints.NORTHWEST;
 				sidebar.add(new JLabel("<html><u>Directories"), c);
-				c.gridy = 3;
-				sidebar.add(new JLabel("Local:"), c);
-				c.gridy = 4;
+				c.gridy = 2;
+				//sidebar.add(new JLabel("Local:"), c);
+				//c.gridy = 4;
 				setLocal = new JButton("Set Local Dir");
 				setLocal.addActionListener(GlobalAppHandler.this);
 				c.fill = GridBagConstraints.BOTH;
 				sidebar.add(setLocal, c);
-				c.gridy = 5;
-				sidebar.add(new JLabel("Flash Drive:"), c);
-				c.gridy = 6;
+				c.gridy = 3;
+				//sidebar.add(new JLabel("Flash Drive:"), c);
+				//c.gridy = 6;
 				setFlashDrive = new JButton("Set Flash Dir");
 				setFlashDrive.addActionListener(GlobalAppHandler.this);
 				sidebar.add(setFlashDrive, c);
-				c.gridy = 7;
+				c.gridy = 4;
 				sidebar.add(new JLabel("<html><u>Event</u></html>"), c);
-				c.gridy = 8;
+				c.gridy = 5;
 				event = new JLabel("none");
 				sidebar.add(event, c);
-				c.gridy = 9;
+				c.gridy = 6;
 				save = new JButton("Save Config");
 				save.addActionListener(GlobalAppHandler.this);
 				sidebar.add(save, c);
 				
-				window.setMinimumSize(new Dimension(525, 350));
+				window.setMinimumSize(new Dimension(400, 350));
 				window.setLocationRelativeTo(null);
 				window.setResizable(true);
 				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,8 +152,8 @@ public class GlobalAppHandler implements ActionListener {
 
 	public static void updateDirs()
 	{
-		setLocal.setText(appData.getLocalLocation().toString());
-		setFlashDrive.setText(appData.getFlashDriveLocation().toString());
+		setLocal.setToolTipText(appData.getLocalLocation().toString());
+		setFlashDrive.setToolTipText(appData.getFlashDriveLocation().toString());
 	}
 	
 	public static void updateEvent()
