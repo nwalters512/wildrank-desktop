@@ -27,7 +27,8 @@ public class MainMenu extends Mode implements ActionListener {
 
 	@Override
 	protected void initializePanel() {
-		GlobalAppHandler.updateDirs(appData.getLocalLocation(), appData.getFlashDriveLocation());
+		GlobalAppHandler.updateEvent();
+		GlobalAppHandler.updateDirs();
 		getEventData = new JButton("Get Event Data");
 		getEventData.addActionListener(MainMenu.this);
 		generateMatchCSV = new JButton("Generate CSV");

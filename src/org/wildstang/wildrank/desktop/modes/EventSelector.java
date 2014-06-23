@@ -62,7 +62,6 @@ public class EventSelector extends Mode implements ActionListener {
 		Logger.getInstance().log("TeamInfo: " + teamInfoString);
 		// Extract event list from that data
 		Logger.getInstance().log("Parsing team data");
-
 		try {
 			SwingUtilities.invokeLater(new Runnable() {
 

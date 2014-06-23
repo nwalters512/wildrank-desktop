@@ -35,6 +35,7 @@ public class GlobalAppHandler implements ActionListener {
 	private static JButton setLocal;
 	private static JButton setFlashDrive;
 	private static JButton save;
+	private static JLabel event;
 
 	private static Mode mode;
 
@@ -66,6 +67,7 @@ public class GlobalAppHandler implements ActionListener {
 				content.setLayout(new GridBagLayout());
 				content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 				
+				//left side
 				sidebar = new JPanel();
 				sidebar.setLayout(new GridBagLayout());
 				sidebar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
@@ -83,7 +85,7 @@ public class GlobalAppHandler implements ActionListener {
 				sidebar.add(desktop, c);
 				c.gridy = 2;
 				c.anchor = GridBagConstraints.NORTHWEST;
-				sidebar.add(new JLabel("<HTML><U>Directories</U><HTML>"), c);
+				sidebar.add(new JLabel("<html><u>Directories</u></html>"), c);
 				c.gridy = 3;
 				sidebar.add(new JLabel("Local:"), c);
 				c.gridy = 4;
@@ -98,11 +100,16 @@ public class GlobalAppHandler implements ActionListener {
 				setFlashDrive.addActionListener(GlobalAppHandler.this);
 				sidebar.add(setFlashDrive, c);
 				c.gridy = 7;
+				sidebar.add(new JLabel("<html><u>Event</u></html>"), c);
+				c.gridy = 8;
+				event = new JLabel("none");
+				sidebar.add(event, c);
+				c.gridy = 9;
 				save = new JButton("Save Config");
 				save.addActionListener(GlobalAppHandler.this);
 				sidebar.add(save, c);
 				
-				window.setMinimumSize(new Dimension(600, 300));
+				window.setMinimumSize(new Dimension(600, 350));
 				window.setLocationRelativeTo(null);
 				window.setResizable(true);
 				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -142,10 +149,15 @@ public class GlobalAppHandler implements ActionListener {
 		initializeNewMode();
 	}
 
-	public static void updateDirs(File localF, File fdF)
+	public static void updateDirs()
 	{
-		setLocal.setText(localF.toString());
-		setFlashDrive.setText(fdF.toString());
+		setLocal.setText(appData.getLocalLocation().toString());
+		setFlashDrive.setText(appData.getFlashDriveLocation().toString());
+	}
+	
+	public static void updateEvent()
+	{
+		event.setText(appData.getEventKey());
 	}
 	
 	public AppData getAppData() {
@@ -180,11 +192,11 @@ public class GlobalAppHandler implements ActionListener {
 		}
 		else if (event.getSource() == setLocal) {
 			appData.setFlashDriveLocation(MainMenu.getLocalLocation());
-			GlobalAppHandler.updateDirs(appData.getLocalLocation(), appData.getFlashDriveLocation());
+			GlobalAppHandler.updateDirs();
 		}
 		else if (event.getSource() == setFlashDrive) {
 			appData.setFlashDriveLocation(MainMenu.getFlashDriveLocation());
-			GlobalAppHandler.updateDirs(appData.getLocalLocation(), appData.getFlashDriveLocation());
+			GlobalAppHandler.updateDirs();
 		}
 		else if (event.getSource() == save) {
 			appData.save();

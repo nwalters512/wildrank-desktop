@@ -13,7 +13,7 @@ import org.wildstang.wildrank.desktop.utils.Logger;
 public class AppData {
 	private File flashDriveLocation;
 	private File localLocation;
-	private String eventKey;
+	private String eventKey = "";
 	private Game game;
 
 	//this holds the data that everything needs to access and saves and loads it
