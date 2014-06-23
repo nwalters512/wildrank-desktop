@@ -1,15 +1,12 @@
 package org.wildstang.wildrank.desktop;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -123,7 +120,7 @@ public class GlobalAppHandler implements ActionListener {
 				window.getContentPane().setLayout(new BorderLayout());
 				window.getContentPane().add(sidebar, BorderLayout.WEST);
 				window.getContentPane().add(backBar, BorderLayout.NORTH);
-				window.getContentPane().add(content, BorderLayout.EAST);
+				window.getContentPane().add(content, BorderLayout.CENTER);
 				window.setVisible(true);
 			}
 		});
