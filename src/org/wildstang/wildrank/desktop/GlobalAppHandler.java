@@ -35,6 +35,7 @@ public class GlobalAppHandler implements ActionListener {
 	private static JButton setLocal;
 	private static JButton setFlashDrive;
 	private static JButton save;
+	private static JButton logPanel;
 	private static JLabel event;
 
 	private static Mode mode;
@@ -77,16 +78,16 @@ public class GlobalAppHandler implements ActionListener {
 				c.gridwidth = 1;
 				c.anchor = GridBagConstraints.NORTH;
 				c.fill = GridBagConstraints.VERTICAL;
-				JLabel wr = new JLabel("<html><b>WildRank</b></html>");
+				JLabel wr = new JLabel("<html><b>WildRank");
 				wr.setFont(new Font(wr.getFont().getName(), Font.PLAIN, 25));
-				JLabel desktop = new JLabel("<html><b>Desktop</b></html>");
+				JLabel desktop = new JLabel("<html><b>Desktop");
 				desktop.setFont(new Font(desktop.getFont().getName(), Font.PLAIN, 25));
 				sidebar.add(wr, c);
 				c.gridy = 1;
 				sidebar.add(desktop, c);
 				c.gridy = 2;
 				c.anchor = GridBagConstraints.NORTHWEST;
-				sidebar.add(new JLabel("<html><u>Directories</u></html>"), c);
+				sidebar.add(new JLabel("<html><u>Directories"), c);
 				c.gridy = 3;
 				sidebar.add(new JLabel("Local:"), c);
 				c.gridy = 4;
@@ -110,7 +111,7 @@ public class GlobalAppHandler implements ActionListener {
 				save.addActionListener(GlobalAppHandler.this);
 				sidebar.add(save, c);
 				
-				window.setMinimumSize(new Dimension(575, 350));
+				window.setMinimumSize(new Dimension(525, 350));
 				window.setLocationRelativeTo(null);
 				window.setResizable(true);
 				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,6 +121,9 @@ public class GlobalAppHandler implements ActionListener {
 				back = new JButton("Back to Main Menu");
 				back.addActionListener(GlobalAppHandler.this);
 				backBar.add(back, BorderLayout.WEST);
+				logPanel = new JButton("Show/Hide Log");
+				logPanel.addActionListener(GlobalAppHandler.this);
+				backBar.add(logPanel, BorderLayout.EAST);
 				window.getContentPane().setLayout(new BorderLayout());
 				window.getContentPane().add(sidebar, BorderLayout.WEST);
 				window.getContentPane().add(backBar, BorderLayout.NORTH);
@@ -202,6 +206,9 @@ public class GlobalAppHandler implements ActionListener {
 		else if (event.getSource() == save) {
 			appData.save();
 		} 
+		else if (event.getSource() == logPanel) {
+			Logger.getInstance().toggleVisiblity();
+		}
 	}
 
 	public void disableBackButton() {

@@ -47,6 +47,11 @@ public class Logger {
 		});
 	}
 
+	public void toggleVisiblity()
+	{
+		frame.setVisible(!frame.isVisible());
+	}
+	
 	public void printToSystem(boolean print) {
 		printToSystem = print;
 	}
