@@ -4,6 +4,10 @@
 
 The desktop companion to the WildRank mobile app.
 
+##How to Run
+
+With Java 7.0 installed, running Wildrank is as simple as double clicking the file "wildrank.jar", located in the folder "wildrank."
+
 ## Usage
 
 The desktop app for WildRank serves several primary functions. First, it is used to download event data to be used by the tablets; this includes a list of teams and matches at the event. It also allows you to group teams into a user-defined number of groups. This is useful for pit scouting, where you may want to send several teams out to scout at once but you want to avoid double-scouting. It is also used to compile notes produced by the tablets. Because several tablets could be adding notes on the same team at the same time, we use the desktop to compile those notes into a "finalized" version. The desktop can also output a CSV file of all match data for use in a spreadsheet program, as well as generate PDFs of note and pit data. However, since we have added the ability to view that data directly on the tablets, those functions probably won't be used.
